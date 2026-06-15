@@ -68,7 +68,10 @@ async def fetch_reels() -> List[Dict]:
     Only public content – no authentication used.
     """
     async with async_playwright() as pw:
-        browser = await pw.chromium.launch(headless=PLAYWRIGHT_HEADLESS)
+        browser = await pw.chromium.launch(
+            headless=PLAYWRIGHT_HEADLESS,
+            args=["--no-sandbox", "--disable-setuid-sandbox", "--disable-dev-shm-usage"],
+        )
         ctx: BrowserContext = await browser.new_context(
             user_agent=(
                 "Mozilla/5.0 (Windows NT 10.0; Win64; x64) "
