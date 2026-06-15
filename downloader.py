@@ -11,7 +11,7 @@ log = get_logger("downloader")
 _YDL_OPTS_BASE: Dict[str, Any] = {
     "format": "hd/best",
     "merge_output_format": "mp4",
-    "ratelimit": YTDLP_RATE_LIMIT,
+    "ratelimit": int(YTDLP_RATE_LIMIT) if YTDLP_RATE_LIMIT else None,
     "quiet": True,
     "no_warnings": True,
     "noplaylist": True,
